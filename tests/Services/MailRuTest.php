@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace bkrukowski\TransparentEmail\Tests\Services;
 
 use bkrukowski\TransparentEmail\Emails\Email;
-use bkrukowski\TransparentEmail\Services\MailRU;
+use bkrukowski\TransparentEmail\Services\MailRu;
 use PHPUnit\Framework\TestCase;
 
-class MailRUTest extends TestCase
+class MailRuTest extends TestCase
 {
     /**
      * @dataProvider providerGetPrimaryEmail
@@ -18,7 +18,7 @@ class MailRUTest extends TestCase
      */
     public function testGetPrimaryEmail(string $inputEmail, string $outputEmail)
     {
-        $this->assertEquals($outputEmail, (new MailRU())->getPrimaryEmail(new Email($inputEmail)));
+        $this->assertEquals($outputEmail, (new MailRu())->getPrimaryEmail(new Email($inputEmail)));
     }
 
     public function providerGetPrimaryEmail() : array
@@ -27,6 +27,9 @@ class MailRUTest extends TestCase
             ['foobar@MAIL.RU', 'foobar@mail.ru'],
             ['fOObar@MaiL.Ru', 'foobar@mail.ru'],
             ['foobar+alias@mail.ru', 'foobar@mail.ru'],
+            ['foobar@list.ru', 'foobar@mail.ru'],
+            ['foobar@inbox.ru', 'foobar@mail.ru'],
+            ['foobar@bk.ru', 'foobar@mail.ru'],
         ];
     }
 
@@ -38,13 +41,16 @@ class MailRUTest extends TestCase
      */
     public function testIsSupported(string $domain, bool $result)
     {
-        $this->assertSame($result, (new MailRU())->isSupported(new Email('Jane.Doe@' . $domain)));
+        $this->assertSame($result, (new MailRu())->isSupported(new Email('Jane.Doe@' . $domain)));
     }
 
     public function providerIsSupported() : array
     {
         return [
             ['mail.ru', true],
+            ['list.ru', true],
+            ['inbox.ru', true],
+            ['bk.ru', true],
             ['mail.RU', true],
             ['MAIL.RU', true],
             ['ma.il.ru', false],

@@ -29,6 +29,7 @@ class YandexRuTest extends TestCase
             ['foobar+alias@yandex.ru', 'foobar@yandex.ru'],
             ['JaneDoe@ya.ru', 'janedoe@yandex.ru'],
             ['Jane.Doe@ya.ru', 'jane-doe@yandex.ru'],
+            ['foobar@yandex.com', 'foobar@yandex.ru'],
         ];
     }
 
@@ -47,6 +48,7 @@ class YandexRuTest extends TestCase
     {
         return [
             ['yandex.ru', true],
+            ['yandex.com', true],
             ['yandex.RU', true],
             ['yan.dex.ru', false],
             ['YANDEX.RU', true],

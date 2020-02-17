@@ -6,7 +6,7 @@ namespace bkrukowski\TransparentEmail;
 
 use bkrukowski\TransparentEmail\Services\AppsGoogleCom;
 use bkrukowski\TransparentEmail\Services\GmailCom;
-use bkrukowski\TransparentEmail\Services\MailRU;
+use bkrukowski\TransparentEmail\Services\MailRu;
 use bkrukowski\TransparentEmail\Services\OutlookCom;
 use bkrukowski\TransparentEmail\Services\TlenPl;
 use bkrukowski\TransparentEmail\Services\Www33MailCom;
@@ -41,7 +41,7 @@ class TransparentEmailFactory
             TlenPl::class,
             AppsGoogleCom::class,
             YandexRu::class,
-            MailRU::class,
+            MailRu::class,
         ];
     }
 }

@@ -7,27 +7,27 @@ namespace bkrukowski\TransparentEmail\Services;
 use bkrukowski\TransparentEmail\Emails\EditableEmail;
 use bkrukowski\TransparentEmail\Emails\EmailInterface;
 
-class YandexRu implements ServiceInterface
+class MailRu implements ServiceInterface
 {
     public function getPrimaryEmail(EmailInterface $email) : EmailInterface
     {
         return (new EditableEmail($email))
             ->removeSuffixAlias('+')
-            ->replaceInLocalPart('.', '-')
             ->lowerCaseLocalPartIf(true)
             ->setDomain($this->mapDomain($email->getDomain()));
     }
 
     public function isSupported(EmailInterface $email) : bool
     {
-        return in_array($email->getDomain(), ['ya.ru', 'yandex.com', 'yandex.ru']);
+        return in_array($email->getDomain(), ['mail.ru', 'list.ru', 'inbox.ru', 'bk.ru']);
     }
 
     protected function getDomainMapping() : array
     {
         return [
-            'ya.ru' => 'yandex.ru',
-            'yandex.com' => 'yandex.ru'
+            'list.ru' => 'mail.ru',
+            'inbox.ru' => 'mail.ru',
+            'bk.ru' => 'mail.ru',
         ];
     }
 
