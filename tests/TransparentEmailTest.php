@@ -48,6 +48,9 @@ class TransparentEmailTest extends TestCase
             [new TransparentEmail($emptyServiceCollector), 'John.Doe@example.com', 'John.Doe@example.com', true],
             [(new TransparentEmailFactory())->createDefault(), 'John.Doe@gmail.com', 'johndoe@gmail.com', true],
             [(new TransparentEmailFactory())->createDefault(), 'Jane.Doe+receipts@hotmail.com', 'jane.doe@hotmail.com'],
+            [(new TransparentEmailFactory())->createDefault(), 'Jane.Doe+receipts@live.com', 'jane.doe@live.com'],
+            [(new TransparentEmailFactory())->createDefault(), 'Jane.Doe+receipts@msn.com', 'jane.doe@msn.com'],
+            [(new TransparentEmailFactory())->createDefault(), 'Jane.Doe+receipts@outlook.com', 'jane.doe@outlook.com'],
             [(new TransparentEmailFactory())->createDefault(), 'Jane.Doe-receipts@yahoo.com', 'jane.doe@yahoo.com'],
         ];
     }

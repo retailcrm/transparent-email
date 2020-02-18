@@ -1,14 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
 namespace bkrukowski\TransparentEmail\Tests\Services;
 
 use bkrukowski\TransparentEmail\Emails\Email;
-use bkrukowski\TransparentEmail\Services\MailRu;
+use bkrukowski\TransparentEmail\Services\IcloudCom;
 use PHPUnit\Framework\TestCase;
 
-class MailRuTest extends TestCase
+class IcloudComTest extends TestCase
 {
     /**
      * @dataProvider providerGetPrimaryEmail
@@ -18,15 +16,14 @@ class MailRuTest extends TestCase
      */
     public function testGetPrimaryEmail(string $inputEmail, string $outputEmail)
     {
-        $this->assertEquals($outputEmail, (new MailRu())->getPrimaryEmail(new Email($inputEmail)));
+        $this->assertEquals($outputEmail, (new IcloudCom())->getPrimaryEmail(new Email($inputEmail)));
     }
 
     public function providerGetPrimaryEmail() : array
     {
         return [
-            ['foobar@MAIL.RU', 'foobar@mail.ru'],
-            ['fOObar@MaiL.Ru', 'foobar@mail.ru'],
-            ['foobar+alias@mail.ru', 'foobar@mail.ru'],
+            ['foobar@ICLOUD.COM', 'foobar@icloud.com'],
+            ['foobar+alias@icloud.com', 'foobar@icloud.com'],
         ];
     }
 
@@ -38,16 +35,15 @@ class MailRuTest extends TestCase
      */
     public function testIsSupported(string $domain, bool $result)
     {
-        $this->assertSame($result, (new MailRu())->isSupported(new Email('Jane.Doe@' . $domain)));
+        $this->assertSame($result, (new IcloudCom())->isSupported(new Email('Jane.Doe@' . $domain)));
     }
 
     public function providerIsSupported() : array
     {
         return [
-            ['mail.ru', true],
-            ['mail.RU', true],
-            ['MAIL.RU', true],
-            ['ma.il.ru', false],
+            ['icloud.com', true],
+            ['ICLOUD.COM', true],
+            ['i.cloud.com', false],
         ];
     }
 }

@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace bkrukowski\TransparentEmail\Services;
 
 use bkrukowski\TransparentEmail\Emails\EditableEmail;
 use bkrukowski\TransparentEmail\Emails\EmailInterface;
 
-class MailRu implements ServiceInterface
+class IcloudCom implements ServiceInterface
 {
     public function getPrimaryEmail(EmailInterface $email) : EmailInterface
     {
@@ -18,6 +16,6 @@ class MailRu implements ServiceInterface
 
     public function isSupported(EmailInterface $email) : bool
     {
-        return in_array($email->getDomain(), ['mail.ru']);
+        return in_array($email->getDomain(), ['icloud.com']);
     }
 }

@@ -27,7 +27,11 @@ class OutlookComTest extends TestCase
             ['outlook.com', true],
             ['Outlook.Com', true],
             ['hotmail.com', true],
+            ['msn.com', true],
+            ['live.com', true],
             ['HotMail.COM', true],
+            ['Msn.COM', true],
+            ['LIve.COM', true],
             ['gmail.com', false],
             ['tlen.pl', false],
         ];
@@ -52,6 +56,8 @@ class OutlookComTest extends TestCase
             ['Jane.Doe@Outlook.Com', 'jane.doe@outlook.com'],
             ['Jane.Doe+alias@OUTLOOK.COM', 'jane.doe@outlook.com'],
             ['Jane.Doe+Hotmail@hotmail.com', 'jane.doe@hotmail.com'],
+            ['Jane.Doe+Hotmail@live.com', 'jane.doe@live.com'],
+            ['Jane.Doe+Hotmail@msn.com', 'jane.doe@msn.com'],
         ];
     }
 }
