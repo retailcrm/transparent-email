@@ -18,6 +18,6 @@ class OutlookCom implements ServiceInterface
 
     public function isSupported(EmailInterface $email) : bool
     {
-        return in_array($email->getDomain(), ['outlook.com', 'hotmail.com'], true);
+        return in_array($email->getDomain(), ['outlook.com', 'hotmail.com', 'live.com', 'msn.com'], true);
     }
 }
