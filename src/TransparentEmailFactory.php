@@ -40,7 +40,6 @@ class TransparentEmailFactory
             YahooCom::class,
             Www33MailCom::class,
             TlenPl::class,
-            AppsGoogleCom::class,
             YandexRu::class,
             MailRu::class,
             IcloudCom::class
