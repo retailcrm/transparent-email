@@ -20,14 +20,17 @@ class YandexRu implements ServiceInterface
 
     public function isSupported(EmailInterface $email) : bool
     {
-        return in_array($email->getDomain(), ['ya.ru', 'yandex.com', 'yandex.ru']);
+        return in_array($email->getDomain(), ['ya.ru', 'yandex.com', 'yandex.ru', 'yandex.by', 'yandex.kz', 'yandex.ua']);
     }
 
     protected function getDomainMapping() : array
     {
         return [
             'ya.ru' => 'yandex.ru',
-            'yandex.com' => 'yandex.ru'
+            'yandex.com' => 'yandex.ru',
+            'yandex.by' => 'yandex.ru',
+            'yandex.kz' => 'yandex.ru',
+            'yandex.ua' => 'yandex.ru'
         ];
     }
 

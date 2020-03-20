@@ -30,6 +30,9 @@ class YandexRuTest extends TestCase
             ['JaneDoe@ya.ru', 'janedoe@yandex.ru'],
             ['Jane.Doe@ya.ru', 'jane-doe@yandex.ru'],
             ['foobar@yandex.com', 'foobar@yandex.ru'],
+            ['foobar@yandex.by', 'foobar@yandex.ru'],
+            ['foobar@yandex.kz', 'foobar@yandex.ru'],
+            ['foobar@yandex.ua', 'foobar@yandex.ru'],
         ];
     }
 
@@ -49,6 +52,9 @@ class YandexRuTest extends TestCase
         return [
             ['yandex.ru', true],
             ['yandex.com', true],
+            ['yandex.by', true],
+            ['yandex.kz', true],
+            ['yandex.ua', true],
             ['yandex.RU', true],
             ['yan.dex.ru', false],
             ['YANDEX.RU', true],
