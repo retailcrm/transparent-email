@@ -15,10 +15,11 @@ class YandexRuTest extends TestCase
      *
      * @param string $inputEmail
      * @param string $outputEmail
+     * @param bool $cyrillicAllowed
      */
-    public function testGetPrimaryEmail(string $inputEmail, string $outputEmail)
+    public function testGetPrimaryEmail(string $inputEmail, string $outputEmail, bool $cyrillicAllowed = false)
     {
-        $this->assertEquals($outputEmail, (new YandexRu())->getPrimaryEmail(new Email($inputEmail)));
+        $this->assertEquals($outputEmail, (new YandexRu())->getPrimaryEmail(new Email($inputEmail, false, $cyrillicAllowed)));
     }
 
     public function providerGetPrimaryEmail() : array
@@ -33,6 +34,16 @@ class YandexRuTest extends TestCase
             ['foobar@yandex.by', 'foobar@yandex.ru'],
             ['foobar@yandex.kz', 'foobar@yandex.ru'],
             ['foobar@yandex.ua', 'foobar@yandex.ru'],
+            // Cyrillic use
+            ['иванов@YANDEX.RU', 'иванов@yandex.ru', true],
+            ['иванОВ@YAndEX.ru', 'иванов@yandex.ru', true],
+            ['иванов+alias@yandex.ru', 'иванов@yandex.ru', true],
+            ['ИвановИван@ya.ru', 'ивановиван@yandex.ru', true],
+            ['Иванов.Иван@ya.ru', 'иванов-иван@yandex.ru', true],
+            ['иванов@yandex.com', 'иванов@yandex.ru', true],
+            ['иванов@yandex.by', 'иванов@yandex.ru', true],
+            ['иванов@yandex.kz', 'иванов@yandex.ru', true],
+            ['иванов@yandex.ua', 'иванов@yandex.ru', true],
         ];
     }
 

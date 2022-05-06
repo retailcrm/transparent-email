@@ -15,10 +15,11 @@ class MailRuTest extends TestCase
      *
      * @param string $inputEmail
      * @param string $outputEmail
+     * @param bool $cyrillicAllowed
      */
-    public function testGetPrimaryEmail(string $inputEmail, string $outputEmail)
+    public function testGetPrimaryEmail(string $inputEmail, string $outputEmail, bool $cyrillicAllowed = false)
     {
-        $this->assertEquals($outputEmail, (new MailRu())->getPrimaryEmail(new Email($inputEmail)));
+        $this->assertEquals($outputEmail, (new MailRu())->getPrimaryEmail(new Email($inputEmail, false, $cyrillicAllowed)));
     }
 
     public function providerGetPrimaryEmail() : array
@@ -27,6 +28,10 @@ class MailRuTest extends TestCase
             ['foobar@MAIL.RU', 'foobar@mail.ru'],
             ['fOObar@MaiL.Ru', 'foobar@mail.ru'],
             ['foobar+alias@mail.ru', 'foobar@mail.ru'],
+            // Cyrillic use
+            ['иванов@MAIL.RU', 'иванов@mail.ru', true],
+            ['иванОВ@MaiL.Ru', 'иванов@mail.ru', true],
+            ['иванов+alias@mail.ru', 'иванов@mail.ru', true],
         ];
     }
 

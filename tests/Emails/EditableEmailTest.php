@@ -127,7 +127,7 @@ class EditableEmailTest extends TestCase
         $editable = new EditableEmail($email);
         $new = $editable->lowerCaseLocalPartIf($condition);
         $this->assertSame(!$condition, $editable === $new);
-        $this->assertSame($isLowerCase, strtolower($editable->getLocalPart()) === $new->getLocalPart());
+        $this->assertSame($isLowerCase, mb_strtolower($editable->getLocalPart()) === $new->getLocalPart());
         $this->assertSame($email->getDomain(), $new->getDomain());
     }
 
