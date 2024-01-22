@@ -10,15 +10,15 @@ class ServiceCollector implements ServiceCollectorInterface
 {
     private $services = [];
 
-    public function addService(ServiceInterface $service)
+    public function addService(ServiceInterface $service): void
     {
         $this->services[] = $service;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         foreach ($this->services as $service) {
             yield $service;

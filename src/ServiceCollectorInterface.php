@@ -9,5 +9,5 @@ interface ServiceCollectorInterface extends \IteratorAggregate
     /**
      * @return ServiceInterface[]
      */
-    public function getIterator();
+    public function getIterator(): \Traversable;
 }
